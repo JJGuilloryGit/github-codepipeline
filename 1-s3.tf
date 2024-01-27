@@ -47,12 +47,12 @@ resource "aws_s3_object" "upload_html" {
 }
 
 resource "aws_s3_object" "upload_images" {
-  for_each     = fileset("${path.module}/", "jpg")
+  for_each     = fileset("${path.module}/", "png")
   bucket       = aws_s3_bucket.bucket.id
   key          = each.value
   source       = "${path.module}/${each.value}"
   etag         = filemd5("${path.module}/${each.value}")
-  content_type = "image/jpg"
+  content_type = "image/png"
 }
 
 resource "aws_s3_object" "upload_java" {
