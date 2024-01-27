@@ -47,7 +47,7 @@ resource "aws_s3_object" "upload_html" {
 }
 
 resource "aws_s3_object" "upload_images" {
-  for_each     = fileset("${path.module}/", "*.png")
+  for_each     = fileset("${path.module}/", "*png")
   bucket       = aws_s3_bucket.bucket.id
   key          = each.value
   source       = "${path.module}/${each.value}"
